@@ -3,7 +3,8 @@
 
 ---
 
-<h1 id="install-postgresql">Install PostgreSQL</h1>
+<h1 id="postgresql-administration-cheatsheet">PostgreSQL Administration Cheatsheet</h1>
+<h2 id="install-postgresql">Install PostgreSQL</h2>
 <ol>
 <li>Download installer di <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">sini</a></li>
 <li>Setelah download selesai, run installernya</li>
@@ -17,9 +18,9 @@
 <li>Setelah itu, installasi akan dimulai dan tunggu sampai selesai</li>
 <li>Saat selesai, maka postgreSQL bisa langsung digunakan.</li>
 </ol>
-<h1 id="connect-ke-database">Connect ke Database</h1>
+<h2 id="connect-ke-database">Connect ke Database</h2>
 <p>ada beberapa cara untuk connect ke database postgresSQL, bisa melalui psql, pgAdmin atau dbeaver. berikut tata caranya:</p>
-<h2 id="sql-shell-psql">SQL Shell (psql)</h2>
+<h3 id="sql-shell-psql">SQL Shell (psql)</h3>
 <p>SQL Shell (psql) adalah <strong>program berbasis terminal tempat kita dapat menulis dan menjalankan sintaks SQL di terminal command-line.</strong></p>
 <ol>
 <li>Cari dan buka <strong>SQL Shell (psql)</strong> di menu window</li>
@@ -30,7 +31,7 @@
 <li>Tulis password untuk username yang digunakan sebelumnya</li>
 <li>Jika commandnya berubah menjadi <strong>postgres=#</strong> maka kamu berhasil terkoneksi ke servernya</li>
 </ol>
-<h2 id="pgadmin">pgAdmin</h2>
+<h3 id="pgadmin">pgAdmin</h3>
 <p>PgAdmin merupakan <strong>antarmuka berbasis web yang digunakan untuk mengelola database Postgresql</strong></p>
 <ol>
 <li>Cari dan buka <strong>pgAdmin4</strong> di menu window</li>
@@ -39,7 +40,7 @@
 <li>Masukkan <strong>password</strong> yang dimiliki user yang tertera pada prompt</li>
 <li>Jika logo servernya berubah maka artinya sudah berhasil terhubung.</li>
 </ol>
-<h2 id="dbeaver">DBeaver</h2>
+<h3 id="dbeaver">DBeaver</h3>
 <p>DBeaver adalah <strong>software atau aplikasi berbasis GUI (Graphical User Interface) yang digunakan untuk mengelola dan mengakses berbagai jenis basis data.</strong></p>
 <ol>
 <li><a href="https://dbeaver.io/download/">Download</a> dan install DBeaver</li>
@@ -51,9 +52,9 @@
 <li>Tekan nama server yang telah dibuat sebelumnya pada sidebar bagian kiri</li>
 <li>Jika terdapat <strong>bulatan centang berwarna hijau</strong> pada logo maka artinya <strong>berhasil</strong> terhubung ke server</li>
 </ol>
-<h1 id="managing-databases">Managing Databases</h1>
+<h2 id="managing-databases">Managing Databases</h2>
 <p>Database adalah <strong>sistem yang berfungsi sebagai mengumpulkan file, tabel, atau arsip yang terhubung dan disimpan dalam berbagai media elektronik.</strong></p>
-<h2 id="create-database">Create Database</h2>
+<h3 id="create-database">Create Database</h3>
 <p>Untuk membuat database dapat menggunakan statement <code>CREATE DATABASE</code>, yaitu:</p>
 <pre><code>CREATE DATABASE database_name
 WITH
@@ -97,9 +98,9 @@ WITH
 <p><code>IS_TEMPLATE</code> : Jika true, setiap pengguna dengan hak istimewa CREATEDB dapat mengkloningnya. Jika false, hanya pengguna super atau pemilik database yang dapat mengkloningnya.</p>
 </li>
 </ul>
-<h2 id="alter-database">Alter Database</h2>
+<h3 id="alter-database">Alter Database</h3>
 <p>Statement <code>ALTER DATABASE</code> dapat melakukan:</p>
-<h3 id="mengubah-atribut-database">Mengubah atribut database</h3>
+<h4 id="mengubah-atribut-database">Mengubah atribut database</h4>
 <pre><code>ALTER  DATABASE  name  WITH  option;
 </code></pre>
 <p>Dengan option:</p>
@@ -108,23 +109,23 @@ WITH
 <li><code>CONNECTION LIMIT</code></li>
 <li><code>ALLOW_CONNECTIONS</code></li>
 </ul>
-<h3 id="mengubah-nama-database">Mengubah nama database</h3>
+<h4 id="mengubah-nama-database">Mengubah nama database</h4>
 <pre><code>ALTER DATABASE database_name
 RENAME TO new_name;
 </code></pre>
-<h3 id="mengubah-pemilik-database">Mengubah pemilik database</h3>
+<h4 id="mengubah-pemilik-database">Mengubah pemilik database</h4>
 <pre><code>ALTER DATABASE database_name
 OWNER TO new_owner | current_user | session_user;
 </code></pre>
-<h3 id="mengubah-tablespace-default-database">Mengubah tablespace default database</h3>
+<h4 id="mengubah-tablespace-default-database">Mengubah tablespace default database</h4>
 <pre><code>ALTER DATABASE database_name
 SET TABLESPACE new_tablespace;
 </code></pre>
-<h3 id="mengubah-default-sesi-untuk-variabel-konfigurasi-run-time">Mengubah default sesi untuk variabel konfigurasi run-time</h3>
+<h4 id="mengubah-default-sesi-untuk-variabel-konfigurasi-run-time">Mengubah default sesi untuk variabel konfigurasi run-time</h4>
 <pre><code>ALTER DATABASE database_name
 SET configuration_parameter = value;
 </code></pre>
-<h2 id="drop-database">Drop Database</h2>
+<h3 id="drop-database">Drop Database</h3>
 <p>Statement <code>DROP DATABASE</code> menghapus database dari server PostgreSQL. Syntax nya adalah:</p>
 <pre><code>DROP DATABASE [IF EXISTS] database_name
 [WITH (FORCE)]
@@ -134,7 +135,7 @@ SET configuration_parameter = value;
 <li><code>DROP DATABASE</code> akan error, jika masih terkoneksi ke database tersebut kecuali menggunakan option FORCE</li>
 <li>Statement <code>DROP DATABASE</code> menghapus database dari kedua catalog entry dan data directory. Karena PostgreSQL tidak mengizinkan mengembalikan operasi ini, kita harus menggunakannya dengan hati-hati.</li>
 </ul>
-<h2 id="copy-database">Copy Database</h2>
+<h3 id="copy-database">Copy Database</h3>
 <p>Untuk melakukan copy database dalam server yang sama adalah:</p>
 <pre><code>CREATE DATABASE targetdb 
 WITH TEMPLATE sourcedb;
@@ -145,13 +146,13 @@ WITH TEMPLATE sourcedb;
 <li><code>CREATE DATABASE targetdb;</code></li>
 <li><code>psql -U postgres -d targetdb -f sourcedb.sql</code></li>
 </ol>
-<h1 id="managing-schemas">Managing Schemas</h1>
+<h2 id="managing-schemas">Managing Schemas</h2>
 <p>Schema adalah <strong>wadah yang berisi logika dari tabel dan objek lain nya pada sebuah database.</strong> Schema memungkinkan kita mengatur dan memberi nama pada objek database di dalam database.</p>
 <p>Untuk mengakses objek dalam schema, Kita perlu mengkualifikasi objek tersebut dengan menggunakan sintaks berikut:</p>
 <pre><code>schema_name.object_name
 </code></pre>
 <p>Sebuah database mungkin berisi satu atau lebih schema. Namun, suatu schema hanya dimiliki oleh satu database. Selain itu, dua schema dapat memiliki objek berbeda yang memiliki nama yang sama.</p>
-<h2 id="create-schema">Create Schema</h2>
+<h3 id="create-schema">Create Schema</h3>
 <p>Pernyataan <code>CREATE SCHEMA</code> memungkinkan membuat skema baru di database saat ini. Berikut sintaks nya:</p>
 <pre><code>CREATE SCHEMA [IF NOT EXISTS] schema_name;
 </code></pre>
@@ -172,7 +173,7 @@ AUTHORIZATION username;
     CREATE VIEW view_name1
         SELECT select_list FROM table_name1;
 </code></pre>
-<h2 id="alter-schema">Alter Schema</h2>
+<h3 id="alter-schema">Alter Schema</h3>
 <p>Pernyataan <code>ALTER SCHEMA</code> memungkinkan untuk mengubah definisi schema. Misalnya, Kita dapat mengganti nama schema sebagai berikut:</p>
 <pre><code>ALTER SCHEMA schema_name RENAME TO new_name;
 </code></pre>
@@ -180,7 +181,7 @@ AUTHORIZATION username;
 <pre><code>ALTER SCHEMA schema_name 
 OWNER TO { new_owner | CURRENT_USER | SESSION_USER};
 </code></pre>
-<h2 id="drop-schema">Drop Schema</h2>
+<h3 id="drop-schema">Drop Schema</h3>
 <p><code>DROP SCHEMA</code> menghapus schema dan semua objectnya dari database. Berikut sintaks nya:</p>
 <pre><code>DROP SCHEMA [IF EXISTS] schema_name 
 [ CASCADE | RESTRICT ];
@@ -195,39 +196,39 @@ OWNER TO { new_owner | CURRENT_USER | SESSION_USER};
 <pre><code>DROP SCHEMA [IF EXISTS] schema_name1 [,schema_name2,...] 
 [CASCADE | RESTRICT];
 </code></pre>
-<h1 id="managing-tablespace">Managing Tablespace</h1>
+<h2 id="managing-tablespace">Managing Tablespace</h2>
 <p>Tablespace adalah <strong>lokasi disk tempat PostgreSQL menyimpan file data yang berisi objek database seperti indeks dan tabel.</strong></p>
 <p>PostgreSQL memiliki dua tablespace default:</p>
 <ul>
 <li><code>pg_default</code> tablespace menyimpan data pengguna.</li>
 <li><code>pg_global</code> tablespace menyimpan data global.</li>
 </ul>
-<h2 id="create-tablespace">Create Tablespace</h2>
+<h3 id="create-tablespace">Create Tablespace</h3>
 <p>Untuk membuat tablespace baru, gunakan pernyataan <code>CREATE TABLESPACE</code>, seperti berikut:</p>
 <pre><code>CREATE TABLESPACE tablespace_name
 OWNER user_name
 LOCATION directory_path;
 </code></pre>
 <p>Setelah membuat Tablespace baru, Kita dapat menentukannya dalam pernyataan <code>CREATE DATABASE</code>, <code>CREATE TABLE</code> dan <code>CREATE INDEX</code> untuk menyimpan file data object di tablespace.</p>
-<h2 id="alter-tablespace">Alter Tablespace</h2>
+<h3 id="alter-tablespace">Alter Tablespace</h3>
 <p>Setelah membuat tablespace, Kita dapat mengubah definisinya dengan menggunakan pernyataan <code>ALTER TABLESPACE</code> sebagai berikut:</p>
 <pre><code>ALTER TABLESPACE tablespace_name
 action;
 </code></pre>
 <p>action nya dapat berupa:</p>
-<h3 id="ganti-nama">Ganti nama</h3>
+<h4 id="ganti-nama">Ganti nama</h4>
 <pre><code>ALTER TABLESPACE tablespace_name 
 RENAME TO new_name;
 </code></pre>
-<h3 id="ganti-pemilik">Ganti pemilik</h3>
+<h4 id="ganti-pemilik">Ganti pemilik</h4>
 <pre><code>ALTER  TABLESPACE tablespace_name 
 OWNER TO new_owner;
 </code></pre>
-<h3 id="menetapkan-parameter">Menetapkan parameter</h3>
+<h4 id="menetapkan-parameter">Menetapkan parameter</h4>
 <pre><code>ALTER  TABLESPACE tablespace_name 
 SET parameter_name = value;
 </code></pre>
-<h2 id="drop-tablespace">Drop Tablespace</h2>
+<h3 id="drop-tablespace">Drop Tablespace</h3>
 <p>Pernyataan <code>DROP TABLESPACE</code> menghapus tablespace dari database:</p>
 <pre><code>DROP  TABLESPACE [IF  EXISTS] tablespace_name;
 </code></pre>
