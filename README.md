@@ -1,4 +1,5 @@
-﻿# Install PostgreSQL
+# PostgreSQL Administration Cheatsheet
+## Install PostgreSQL
 
 1. Download installer di [sini](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 2. Setelah download selesai, run installernya
@@ -12,10 +13,10 @@
 10. Setelah itu, installasi akan dimulai dan tunggu sampai selesai
 11. Saat selesai, maka postgreSQL bisa langsung digunakan. 
  
-# Connect ke Database
+## Connect ke Database
 ada beberapa cara untuk connect ke database postgresSQL, bisa melalui psql, pgAdmin atau dbeaver. berikut tata caranya:
 
-## SQL Shell (psql)
+### SQL Shell (psql)
 SQL Shell (psql) adalah **program berbasis terminal tempat kita dapat menulis dan menjalankan sintaks SQL di terminal command-line.**
 
 1. Cari dan buka **SQL Shell (psql)** di menu window
@@ -26,7 +27,7 @@ SQL Shell (psql) adalah **program berbasis terminal tempat kita dapat menulis da
 6. Tulis password untuk username yang digunakan sebelumnya
 7. Jika commandnya berubah menjadi **postgres=#** maka kamu berhasil terkoneksi ke servernya
 
-## pgAdmin
+### pgAdmin
 PgAdmin merupakan **antarmuka berbasis web yang digunakan untuk mengelola database Postgresql**
 
 1. Cari dan buka **pgAdmin4** di menu window
@@ -35,7 +36,7 @@ PgAdmin merupakan **antarmuka berbasis web yang digunakan untuk mengelola databa
 4. Masukkan **password** yang dimiliki user yang tertera pada prompt
 5. Jika logo servernya berubah maka artinya sudah berhasil terhubung. 
 
-## DBeaver
+### DBeaver
 DBeaver adalah **software atau aplikasi berbasis GUI (Graphical User Interface) yang digunakan untuk mengelola dan mengakses berbagai jenis basis data.**
 
 1. [Download](https://dbeaver.io/download/) dan install DBeaver
@@ -47,10 +48,10 @@ DBeaver adalah **software atau aplikasi berbasis GUI (Graphical User Interface) 
 7. Tekan nama server yang telah dibuat sebelumnya pada sidebar bagian kiri
 8. Jika terdapat **bulatan centang berwarna hijau** pada logo maka artinya **berhasil** terhubung ke server
  
-# Managing Databases
+## Managing Databases
 Database adalah **sistem yang berfungsi sebagai mengumpulkan file, tabel, atau arsip yang terhubung dan disimpan dalam berbagai media elektronik.**
 
-## Create Database
+### Create Database
 Untuk membuat database dapat menggunakan statement `CREATE DATABASE`, yaitu:
 
     CREATE DATABASE database_name
@@ -85,31 +86,31 @@ Dengan:
     
 - `IS_TEMPLATE` : Jika true, setiap pengguna dengan hak istimewa CREATEDB dapat mengkloningnya. Jika false, hanya pengguna super atau pemilik database yang dapat mengkloningnya.
 
-## Alter Database
+### Alter Database
 Statement `ALTER DATABASE` dapat melakukan:
-### Mengubah atribut database
+#### Mengubah atribut database
     ALTER  DATABASE  name  WITH  option;
 Dengan option:
 - `IS_TEMPLATE` 
 - `CONNECTION LIMIT`
 -  `ALLOW_CONNECTIONS`
 
-### Mengubah nama database
+#### Mengubah nama database
     ALTER DATABASE database_name
     RENAME TO new_name;
-### Mengubah pemilik database
+#### Mengubah pemilik database
     ALTER DATABASE database_name
     OWNER TO new_owner | current_user | session_user;
-### Mengubah tablespace default database
+#### Mengubah tablespace default database
 
     ALTER DATABASE database_name
     SET TABLESPACE new_tablespace;
-### Mengubah default sesi untuk variabel konfigurasi run-time
+#### Mengubah default sesi untuk variabel konfigurasi run-time
 
     ALTER DATABASE database_name
     SET configuration_parameter = value;
 
-## Drop Database
+### Drop Database
 Statement `DROP DATABASE` menghapus database dari server PostgreSQL. Syntax nya adalah:
 
     DROP DATABASE [IF EXISTS] database_name
@@ -118,7 +119,7 @@ Statement `DROP DATABASE` menghapus database dari server PostgreSQL. Syntax nya 
    - `DROP DATABASE` akan error, jika masih terkoneksi ke database tersebut kecuali menggunakan option FORCE
    - Statement `DROP DATABASE` menghapus database dari kedua catalog entry dan data directory. Karena PostgreSQL tidak mengizinkan mengembalikan operasi ini, kita harus menggunakannya dengan hati-hati.
 
-## Copy Database
+### Copy Database
 Untuk melakukan copy database dalam server yang sama adalah:
 
     CREATE DATABASE targetdb 
@@ -130,7 +131,7 @@ Untuk melakukan copy database dalam server yang berbeda adalah:
 2.  `CREATE  DATABASE targetdb;`
 3.  `psql -U postgres -d targetdb -f sourcedb.sql`
 
-# Managing Schemas
+## Managing Schemas
 Schema adalah **wadah yang berisi logika dari tabel dan objek lain nya pada sebuah database.** Schema memungkinkan kita mengatur dan memberi nama pada objek database di dalam database.
 
 Untuk mengakses objek dalam schema, Kita perlu mengkualifikasi objek tersebut dengan menggunakan sintaks berikut:
@@ -139,7 +140,7 @@ Untuk mengakses objek dalam schema, Kita perlu mengkualifikasi objek tersebut de
 
 Sebuah database mungkin berisi satu atau lebih schema. Namun, suatu schema hanya dimiliki oleh satu database. Selain itu, dua schema dapat memiliki objek berbeda yang memiliki nama yang sama.
 
-## Create Schema
+### Create Schema
 Pernyataan `CREATE SCHEMA` memungkinkan membuat skema baru di database saat ini. Berikut sintaks nya: 
 
     CREATE SCHEMA [IF NOT EXISTS] schema_name;
@@ -164,7 +165,7 @@ PostgreSQL memungkinkan kita membuat schema dan list of objects seperti table da
         CREATE VIEW view_name1
             SELECT select_list FROM table_name1;
 
-## Alter Schema
+### Alter Schema
 Pernyataan `ALTER SCHEMA` memungkinkan untuk mengubah definisi schema. Misalnya, Kita dapat mengganti nama schema sebagai berikut:
 
     ALTER SCHEMA schema_name RENAME TO new_name;
@@ -174,7 +175,7 @@ Selain mengganti nama schema, `ALTER SCHEMA` juga memungkinkan untuk mengubah pe
     ALTER SCHEMA schema_name 
     OWNER TO { new_owner | CURRENT_USER | SESSION_USER};
 
-## Drop Schema
+### Drop Schema
 `DROP SCHEMA` menghapus schema dan semua objectnya dari database. Berikut sintaks nya:
 
     DROP SCHEMA [IF EXISTS] schema_name 
@@ -190,14 +191,14 @@ PostgreSQL memungkinkan untuk menghapus beberapa schema secara bersamaan dengan 
     DROP SCHEMA [IF EXISTS] schema_name1 [,schema_name2,...] 
     [CASCADE | RESTRICT];
 
-# Managing Tablespace
+## Managing Tablespace
 Tablespace adalah **lokasi disk tempat PostgreSQL menyimpan file data yang berisi objek database seperti indeks dan tabel.**
 
 PostgreSQL memiliki dua tablespace default: 
 - `pg_default` tablespace menyimpan data pengguna. 
 - `pg_global` tablespace menyimpan data global.
 
-## Create Tablespace
+### Create Tablespace
 Untuk membuat tablespace baru, gunakan pernyataan `CREATE TABLESPACE`, seperti berikut:
 
     CREATE TABLESPACE tablespace_name
@@ -206,7 +207,7 @@ Untuk membuat tablespace baru, gunakan pernyataan `CREATE TABLESPACE`, seperti b
 
 Setelah membuat Tablespace baru, Kita dapat menentukannya dalam pernyataan `CREATE DATABASE`, `CREATE TABLE` dan `CREATE INDEX` untuk menyimpan file data object di tablespace.
 
-## Alter Tablespace
+### Alter Tablespace
 Setelah membuat tablespace, Kita dapat mengubah definisinya dengan menggunakan pernyataan `ALTER TABLESPACE` sebagai berikut:
 
     ALTER TABLESPACE tablespace_name
@@ -214,21 +215,21 @@ Setelah membuat tablespace, Kita dapat mengubah definisinya dengan menggunakan p
 
 action nya dapat berupa: 
 
-### Ganti nama 
+#### Ganti nama 
     ALTER TABLESPACE tablespace_name 
     RENAME TO new_name;
 
-### Ganti pemilik
+#### Ganti pemilik
 
     ALTER  TABLESPACE tablespace_name 
     OWNER TO new_owner;
 
-### Menetapkan parameter
+#### Menetapkan parameter
 
     ALTER  TABLESPACE tablespace_name 
     SET parameter_name = value;
 
-## Drop Tablespace
+### Drop Tablespace
 Pernyataan `DROP TABLESPACE` menghapus tablespace dari database:
 
     DROP  TABLESPACE [IF  EXISTS] tablespace_name;
