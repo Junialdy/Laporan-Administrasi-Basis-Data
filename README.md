@@ -147,15 +147,15 @@ Pernyataan `CREATE SCHEMA` memungkinkan membuat skema baru di database saat ini.
 Dalam sintaks ini:
 - Pertama, tentukan nama schema setelah kata kunci `CREATE SCHEMA`. Nama schema harus unik dalam database saat ini.
 - Kedua, secara opsional gunakan `IF NOT EXISTS` untuk membuat schema baru secara kondisional hanya jika schema tersebut tidak ada. Mencoba membuat schema baru yang sudah ada tanpa menggunakan opsi `IF NOT EXISTS` akan menghasilkan error.
----
+
 Kita juga dapat membuat schema untuk pengguna:
 
     CREATE SCHEMA [IF NOT EXISTS] 
     AUTHORIZATION username;
 
-Dalam hal ini, schemaakan memiliki nama yang sama dengan nama **username**
+Dalam hal ini, schema akan memiliki nama yang sama dengan nama **username**
 
----
+
 PostgreSQL memungkinkan kita membuat schema dan list of objects seperti table dan views menggunakan satu pernyataan sebagai berikut:
 
     CREATE SCHEMA schema_name

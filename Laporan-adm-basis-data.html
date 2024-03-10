@@ -1,67 +1,157 @@
 ﻿<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laporan adm basis data</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laporan adm basis data</title>
-  <link rel="stylesheet" href="https://stackedit.io/style.css" />
-</head>
-
-<body class="stackedit">
-  <div class="stackedit__html"><h1 id="install-postgresql">Install PostgreSQL</h1>
-<ol>
-<li>Download installer di <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">sini</a></li>
-<li>Setelah download selesai, run installernya</li>
-<li>Pilih Installation directory atau biarkan default</li>
-<li>Pilih Components PostgreSQL Server, pgAdmin, dan Command Line Tools.</li>
-<li>Pilih Data directory atau biarkan default</li>
-<li>Masukkan password yang diinginkan untuk akun superuser</li>
-<li>Masukkan port yang diinginkan atau biarkan default</li>
-<li>Pilih lokasi geografis server database atau biarkan default</li>
-<li>Periksa ringkasan pengaturan yang telah dipilih dan pastikan sudah benar</li>
-<li>Setelah itu, installasi akan dimulai dan tunggu sampai selesai</li>
-<li>Saat selesai, maka postgreSQL bisa langsung digunakan.</li>
-</ol>
-<h1 id="connect-ke-database">Connect ke Database</h1>
-<p>ada beberapa cara untuk connect ke database postgresSQL, bisa melalui psql, pgAdmin atau dbeaver. berikut tata caranya:</p>
-<h2 id="sql-shell-psql">SQL Shell (psql)</h2>
-<p>SQL Shell (psql) adalah <strong>program berbasis terminal tempat kita dapat menulis dan menjalankan sintaks SQL di terminal command-line.</strong></p>
-<ol>
-<li>Cari dan buka <strong>SQL Shell (psql)</strong> di menu window</li>
-<li>Tulis server yang ingin dihubungkan atau tekan <strong>[Enter]</strong> untuk memilih <strong>[localhost]</strong> secara default</li>
-<li>Tulis database yang ingin digunakan atau tekan <strong>[Enter]</strong> untuk memilih <strong>[postgres]</strong> secara default</li>
-<li>Tulis port yang ingin digunakan atau tekan <strong>[Enter]</strong> untuk memilih <strong>[5432]</strong> secara default</li>
-<li>Tulis username yang ingin digunakan atau tekan <strong>[Enter]</strong> untuk memilih <strong>[postgres]</strong> secara default</li>
-<li>Tulis password untuk username yang digunakan sebelumnya</li>
-<li>Jika commandnya berubah menjadi <strong>postgres=#</strong> maka kamu berhasil terkoneksi ke servernya</li>
-</ol>
-<h2 id="pgadmin">pgAdmin</h2>
-<p>PgAdmin merupakan <strong>antarmuka berbasis web yang digunakan untuk mengelola database Postgresql</strong></p>
-<ol>
-<li>Cari dan buka <strong>pgAdmin4</strong> di menu window</li>
-<li>Tekan dropdown <strong>Servers</strong></li>
-<li>Pilih Server yang PostgreSQL &lt;versi&gt; contohnya <strong>PostgreSQL 16</strong></li>
-<li>Masukkan <strong>password</strong> yang dimiliki user yang tertera pada prompt</li>
-<li>Jika logo servernya berubah maka artinya sudah berhasil terhubung.</li>
-</ol>
-<h2 id="dbeaver">DBeaver</h2>
-<p>DBeaver adalah <strong>software atau aplikasi berbasis GUI (Graphical User Interface) yang digunakan untuk mengelola dan mengakses berbagai jenis basis data.</strong></p>
-<ol>
-<li><a href="https://dbeaver.io/download/">Download</a> dan install DBeaver</li>
-<li>Cari dan buka <strong>DBeaver</strong> di menu window</li>
-<li>Pada Menu Bar, tekan <strong>Database -&gt; New Database Connection -&gt; Pilih PostgreSQL</strong></li>
-<li>Isi <strong>Host</strong>, <strong>Database</strong>, dan <strong>Port</strong> server yang akan digunakan</li>
-<li>Setelah itu isi <strong>credential</strong> yang akan dipakai</li>
-<li>Jika semua konfigurasi sudah benar tekan finish dan dbeaver akan memulai mendownload driver yang diperlukan</li>
-<li>Tekan nama server yang telah dibuat sebelumnya pada sidebar bagian kiri</li>
-<li>Jika terdapat <strong>bulatan centang berwarna hijau</strong> pada logo maka artinya <strong>berhasil</strong> terhubung ke server</li>
-</ol>
-<h1 id="managing-databases">Managing Databases</h1>
-<p>Database adalah <strong>sistem yang berfungsi sebagai mengumpulkan file, tabel, atau arsip yang terhubung dan disimpan dalam berbagai media elektronik.</strong></p>
-<h2 id="create-database">Create Database</h2>
-<p>Untuk membuat database dapat menggunakan statement <code>CREATE DATABASE</code>, yaitu:</p>
-<pre><code>CREATE DATABASE database_name
+  <body class="stackedit">
+    <div class="stackedit__html">
+      <h1 id="install-postgresql">Install PostgreSQL</h1>
+      <ol>
+        <li>
+          Download installer di
+          <a
+            href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads"
+            >sini</a
+          >
+        </li>
+        <li>Setelah download selesai, run installernya</li>
+        <li>Pilih Installation directory atau biarkan default</li>
+        <li>
+          Pilih Components PostgreSQL Server, pgAdmin, dan Command Line Tools.
+        </li>
+        <li>Pilih Data directory atau biarkan default</li>
+        <li>Masukkan password yang diinginkan untuk akun superuser</li>
+        <li>Masukkan port yang diinginkan atau biarkan default</li>
+        <li>Pilih lokasi geografis server database atau biarkan default</li>
+        <li>
+          Periksa ringkasan pengaturan yang telah dipilih dan pastikan sudah
+          benar
+        </li>
+        <li>Setelah itu, installasi akan dimulai dan tunggu sampai selesai</li>
+        <li>Saat selesai, maka postgreSQL bisa langsung digunakan.</li>
+      </ol>
+      <h1 id="connect-ke-database">Connect ke Database</h1>
+      <p>
+        ada beberapa cara untuk connect ke database postgresSQL, bisa melalui
+        psql, pgAdmin atau dbeaver. berikut tata caranya:
+      </p>
+      <h2 id="sql-shell-psql">SQL Shell (psql)</h2>
+      <p>
+        SQL Shell (psql) adalah
+        <strong
+          >program berbasis terminal tempat kita dapat menulis dan menjalankan
+          sintaks SQL di terminal command-line.</strong
+        >
+      </p>
+      <ol>
+        <li>Cari dan buka <strong>SQL Shell (psql)</strong> di menu window</li>
+        <li>
+          Tulis server yang ingin dihubungkan atau tekan
+          <strong>[Enter]</strong> untuk memilih
+          <strong>[localhost]</strong> secara default
+        </li>
+        <li>
+          Tulis database yang ingin digunakan atau tekan
+          <strong>[Enter]</strong> untuk memilih
+          <strong>[postgres]</strong> secara default
+        </li>
+        <li>
+          Tulis port yang ingin digunakan atau tekan
+          <strong>[Enter]</strong> untuk memilih <strong>[5432]</strong> secara
+          default
+        </li>
+        <li>
+          Tulis username yang ingin digunakan atau tekan
+          <strong>[Enter]</strong> untuk memilih
+          <strong>[postgres]</strong> secara default
+        </li>
+        <li>Tulis password untuk username yang digunakan sebelumnya</li>
+        <li>
+          Jika commandnya berubah menjadi <strong>postgres=#</strong> maka kamu
+          berhasil terkoneksi ke servernya
+        </li>
+      </ol>
+      <h2 id="pgadmin">pgAdmin</h2>
+      <p>
+        PgAdmin merupakan
+        <strong
+          >antarmuka berbasis web yang digunakan untuk mengelola database
+          Postgresql</strong
+        >
+      </p>
+      <ol>
+        <li>Cari dan buka <strong>pgAdmin4</strong> di menu window</li>
+        <li>Tekan dropdown <strong>Servers</strong></li>
+        <li>
+          Pilih Server yang PostgreSQL &lt;versi&gt; contohnya
+          <strong>PostgreSQL 16</strong>
+        </li>
+        <li>
+          Masukkan <strong>password</strong> yang dimiliki user yang tertera
+          pada prompt
+        </li>
+        <li>
+          Jika logo servernya berubah maka artinya sudah berhasil terhubung.
+        </li>
+      </ol>
+      <h2 id="dbeaver">DBeaver</h2>
+      <p>
+        DBeaver adalah
+        <strong
+          >software atau aplikasi berbasis GUI (Graphical User Interface) yang
+          digunakan untuk mengelola dan mengakses berbagai jenis basis
+          data.</strong
+        >
+      </p>
+      <ol>
+        <li>
+          <a href="https://dbeaver.io/download/">Download</a> dan install
+          DBeaver
+        </li>
+        <li>Cari dan buka <strong>DBeaver</strong> di menu window</li>
+        <li>
+          Pada Menu Bar, tekan
+          <strong
+            >Database -&gt; New Database Connection -&gt; Pilih
+            PostgreSQL</strong
+          >
+        </li>
+        <li>
+          Isi <strong>Host</strong>, <strong>Database</strong>, dan
+          <strong>Port</strong> server yang akan digunakan
+        </li>
+        <li>Setelah itu isi <strong>credential</strong> yang akan dipakai</li>
+        <li>
+          Jika semua konfigurasi sudah benar tekan finish dan dbeaver akan
+          memulai mendownload driver yang diperlukan
+        </li>
+        <li>
+          Tekan nama server yang telah dibuat sebelumnya pada sidebar bagian
+          kiri
+        </li>
+        <li>
+          Jika terdapat <strong>bulatan centang berwarna hijau</strong> pada
+          logo maka artinya <strong>berhasil</strong> terhubung ke server
+        </li>
+      </ol>
+      <h1 id="managing-databases">Managing Databases</h1>
+      <p>
+        Database adalah
+        <strong
+          >sistem yang berfungsi sebagai mengumpulkan file, tabel, atau arsip
+          yang terhubung dan disimpan dalam berbagai media elektronik.</strong
+        >
+      </p>
+      <h2 id="create-database">Create Database</h2>
+      <p>
+        Untuk membuat database dapat menggunakan statement
+        <code>CREATE DATABASE</code>, yaitu:
+      </p>
+      <pre><code>CREATE DATABASE database_name
 WITH
    [OWNER =  role_name]
    [TEMPLATE = template]
@@ -73,177 +163,309 @@ WITH
    [CONNECTION LIMIT = max_concurrent_connection]
    [IS_TEMPLATE = true | false ];
 </code></pre>
-<p>Dengan:</p>
-<ul>
-<li>
-<p><code>Owner</code> : Menetapkan role yang akan menjadi pemilik database. Default nya adalah role yang mengeksekusi command</p>
-</li>
-<li>
-<p><code>Template</code> : Menetapkan template database untuk database baru. Default nya adalah template1</p>
-</li>
-<li>
-<p><code>Encoding</code> : Menentukan kumpulan karakter untuk database baru. Default nya UTF-8</p>
-</li>
-<li>
-<p><code>LC_COLLATE</code> : Menentukan aturan pengurutan karakter dalam database, seperti urutan alfabet atau aturan khusus pengurutan yang disesuaikan dengan bahasa atau aturan tertentu.</p>
-</li>
-<li>
-<p><code>LC_CTYPE</code> : Mengatur pengenalan jenis karakter, seperti huruf besar ke huruf kecil, atau perbedaan dalam pengenalan karakter khusus dalam bahasa tertentu.</p>
-</li>
-<li>
-<p><code>Tablespace</code> : Menentukan nama tablespace untuk database baru.</p>
-</li>
-<li>
-<p><code>ALLOW_CONNECTIONS</code> : Jika false, maka tidak dapat terhubung ke database.</p>
-</li>
-<li>
-<p><code>CONNECTION LIMIT</code> : Menentukan koneksi bersamaan maksimum ke database baru. Defaultnya adalah -1 yang artinya tidak terbatas.</p>
-</li>
-<li>
-<p><code>IS_TEMPLATE</code> : Jika true, setiap pengguna dengan hak istimewa CREATEDB dapat mengkloningnya. Jika false, hanya pengguna super atau pemilik database yang dapat mengkloningnya.</p>
-</li>
-</ul>
-<h2 id="alter-database">Alter Database</h2>
-<p>Statement <code>ALTER DATABASE</code> dapat melakukan:</p>
-<h3 id="mengubah-atribut-database">Mengubah atribut database</h3>
-<pre><code>ALTER  DATABASE  name  WITH  option;
+      <p>Dengan:</p>
+      <ul>
+        <li>
+          <p>
+            <code>Owner</code> : Menetapkan role yang akan menjadi pemilik
+            database. Default nya adalah role yang mengeksekusi command
+          </p>
+        </li>
+        <li>
+          <p>
+            <code>Template</code> : Menetapkan template database untuk database
+            baru. Default nya adalah template1
+          </p>
+        </li>
+        <li>
+          <p>
+            <code>Encoding</code> : Menentukan kumpulan karakter untuk database
+            baru. Default nya UTF-8
+          </p>
+        </li>
+        <li>
+          <p>
+            <code>LC_COLLATE</code> : Menentukan aturan pengurutan karakter
+            dalam database, seperti urutan alfabet atau aturan khusus pengurutan
+            yang disesuaikan dengan bahasa atau aturan tertentu.
+          </p>
+        </li>
+        <li>
+          <p>
+            <code>LC_CTYPE</code> : Mengatur pengenalan jenis karakter, seperti
+            huruf besar ke huruf kecil, atau perbedaan dalam pengenalan karakter
+            khusus dalam bahasa tertentu.
+          </p>
+        </li>
+        <li>
+          <p>
+            <code>Tablespace</code> : Menentukan nama tablespace untuk database
+            baru.
+          </p>
+        </li>
+        <li>
+          <p>
+            <code>ALLOW_CONNECTIONS</code> : Jika false, maka tidak dapat
+            terhubung ke database.
+          </p>
+        </li>
+        <li>
+          <p>
+            <code>CONNECTION LIMIT</code> : Menentukan koneksi bersamaan
+            maksimum ke database baru. Defaultnya adalah -1 yang artinya tidak
+            terbatas.
+          </p>
+        </li>
+        <li>
+          <p>
+            <code>IS_TEMPLATE</code> : Jika true, setiap pengguna dengan hak
+            istimewa CREATEDB dapat mengkloningnya. Jika false, hanya pengguna
+            super atau pemilik database yang dapat mengkloningnya.
+          </p>
+        </li>
+      </ul>
+      <h2 id="alter-database">Alter Database</h2>
+      <p>Statement <code>ALTER DATABASE</code> dapat melakukan:</p>
+      <h3 id="mengubah-atribut-database">Mengubah atribut database</h3>
+      <pre><code>ALTER  DATABASE  name  WITH  option;
 </code></pre>
-<p>Dengan option:</p>
-<ul>
-<li><code>IS_TEMPLATE</code></li>
-<li><code>CONNECTION LIMIT</code></li>
-<li><code>ALLOW_CONNECTIONS</code></li>
-</ul>
-<h3 id="mengubah-nama-database">Mengubah nama database</h3>
-<pre><code>ALTER DATABASE database_name
+      <p>Dengan option:</p>
+      <ul>
+        <li><code>IS_TEMPLATE</code></li>
+        <li><code>CONNECTION LIMIT</code></li>
+        <li><code>ALLOW_CONNECTIONS</code></li>
+      </ul>
+      <h3 id="mengubah-nama-database">Mengubah nama database</h3>
+      <pre><code>ALTER DATABASE database_name
 RENAME TO new_name;
 </code></pre>
-<h3 id="mengubah-pemilik-database">Mengubah pemilik database</h3>
-<pre><code>ALTER DATABASE database_name
+      <h3 id="mengubah-pemilik-database">Mengubah pemilik database</h3>
+      <pre><code>ALTER DATABASE database_name
 OWNER TO new_owner | current_user | session_user;
 </code></pre>
-<h3 id="mengubah-tablespace-default-database">Mengubah tablespace default database</h3>
-<pre><code>ALTER DATABASE database_name
+      <h3 id="mengubah-tablespace-default-database">
+        Mengubah tablespace default database
+      </h3>
+      <pre><code>ALTER DATABASE database_name
 SET TABLESPACE new_tablespace;
 </code></pre>
-<h3 id="mengubah-default-sesi-untuk-variabel-konfigurasi-run-time">Mengubah default sesi untuk variabel konfigurasi run-time</h3>
-<pre><code>ALTER DATABASE database_name
+      <h3 id="mengubah-default-sesi-untuk-variabel-konfigurasi-run-time">
+        Mengubah default sesi untuk variabel konfigurasi run-time
+      </h3>
+      <pre><code>ALTER DATABASE database_name
 SET configuration_parameter = value;
 </code></pre>
-<h2 id="drop-database">Drop Database</h2>
-<p>Statement <code>DROP DATABASE</code> menghapus database dari server PostgreSQL. Syntax nya adalah:</p>
-<pre><code>DROP DATABASE [IF EXISTS] database_name
+      <h2 id="drop-database">Drop Database</h2>
+      <p>
+        Statement <code>DROP DATABASE</code> menghapus database dari server
+        PostgreSQL. Syntax nya adalah:
+      </p>
+      <pre><code>DROP DATABASE [IF EXISTS] database_name
 [WITH (FORCE)]
 </code></pre>
-<ul>
-<li>Jika database tidak ditemukan, PostgreSQL akan error.</li>
-<li><code>DROP DATABASE</code> akan error, jika masih terkoneksi ke database tersebut kecuali menggunakan option FORCE</li>
-<li>Statement <code>DROP DATABASE</code> menghapus database dari kedua catalog entry dan data directory. Karena PostgreSQL tidak mengizinkan mengembalikan operasi ini, kita harus menggunakannya dengan hati-hati.</li>
-</ul>
-<h2 id="copy-database">Copy Database</h2>
-<p>Untuk melakukan copy database dalam server yang sama adalah:</p>
-<pre><code>CREATE DATABASE targetdb 
+      <ul>
+        <li>Jika database tidak ditemukan, PostgreSQL akan error.</li>
+        <li>
+          <code>DROP DATABASE</code> akan error, jika masih terkoneksi ke
+          database tersebut kecuali menggunakan option FORCE
+        </li>
+        <li>
+          Statement <code>DROP DATABASE</code> menghapus database dari kedua
+          catalog entry dan data directory. Karena PostgreSQL tidak mengizinkan
+          mengembalikan operasi ini, kita harus menggunakannya dengan hati-hati.
+        </li>
+      </ul>
+      <h2 id="copy-database">Copy Database</h2>
+      <p>Untuk melakukan copy database dalam server yang sama adalah:</p>
+      <pre><code>CREATE DATABASE targetdb 
 WITH TEMPLATE sourcedb;
 </code></pre>
-<p>Untuk melakukan copy database dalam server yang berbeda adalah:</p>
-<ol>
-<li><code>pg_dump -U postgres -d sourcedb -f sourcedb.sql</code></li>
-<li><code>CREATE DATABASE targetdb;</code></li>
-<li><code>psql -U postgres -d targetdb -f sourcedb.sql</code></li>
-</ol>
-<h1 id="managing-schemas">Managing Schemas</h1>
-<p>Schema adalah <strong>wadah yang berisi logika dari tabel dan objek lain nya pada sebuah database.</strong> Schema memungkinkan kita mengatur dan memberi nama pada objek database di dalam database.</p>
-<p>Untuk mengakses objek dalam schema, Kita perlu mengkualifikasi objek tersebut dengan menggunakan sintaks berikut:</p>
-<pre><code>schema_name.object_name
+      <p>Untuk melakukan copy database dalam server yang berbeda adalah:</p>
+      <ol>
+        <li><code>pg_dump -U postgres -d sourcedb -f sourcedb.sql</code></li>
+        <li><code>CREATE DATABASE targetdb;</code></li>
+        <li><code>psql -U postgres -d targetdb -f sourcedb.sql</code></li>
+      </ol>
+      <h1 id="managing-schemas">Managing Schemas</h1>
+      <p>
+        Schema adalah
+        <strong
+          >wadah yang berisi logika dari tabel dan objek lain nya pada sebuah
+          database.</strong
+        >
+        Schema memungkinkan kita mengatur dan memberi nama pada objek database
+        di dalam database.
+      </p>
+      <p>
+        Untuk mengakses objek dalam schema, Kita perlu mengkualifikasi objek
+        tersebut dengan menggunakan sintaks berikut:
+      </p>
+      <pre><code>schema_name.object_name
 </code></pre>
-<p>Sebuah database mungkin berisi satu atau lebih schema. Namun, suatu schema hanya dimiliki oleh satu database. Selain itu, dua schema dapat memiliki objek berbeda yang memiliki nama yang sama.</p>
-<h2 id="create-schema">Create Schema</h2>
-<p>Pernyataan <code>CREATE SCHEMA</code> memungkinkan membuat skema baru di database saat ini. Berikut sintaks nya:</p>
-<pre><code>CREATE SCHEMA [IF NOT EXISTS] schema_name;
+      <p>
+        Sebuah database mungkin berisi satu atau lebih schema. Namun, suatu
+        schema hanya dimiliki oleh satu database. Selain itu, dua schema dapat
+        memiliki objek berbeda yang memiliki nama yang sama.
+      </p>
+      <h2 id="create-schema">Create Schema</h2>
+      <p>
+        Pernyataan <code>CREATE SCHEMA</code> memungkinkan membuat skema baru di
+        database saat ini. Berikut sintaks nya:
+      </p>
+      <pre><code>CREATE SCHEMA [IF NOT EXISTS] schema_name;
 </code></pre>
-<p>Dalam sintaks ini:</p>
-<ul>
-<li>Pertama, tentukan nama schema setelah kata kunci <code>CREATE SCHEMA</code>. Nama schema harus unik dalam database saat ini.</li>
-<li>Kedua, secara opsional gunakan <code>IF NOT EXISTS</code> untuk membuat schema baru secara kondisional hanya jika schema tersebut tidak ada. Mencoba membuat schema baru yang sudah ada tanpa menggunakan opsi <code>IF NOT EXISTS</code> akan menghasilkan error.</li>
-</ul>
-<p>Kita juga dapat membuat schema untuk pengguna:</p>
-<pre><code>CREATE SCHEMA [IF NOT EXISTS] 
+      <p>Dalam sintaks ini:</p>
+      <ul>
+        <li>
+          Pertama, tentukan nama schema setelah kata kunci
+          <code>CREATE SCHEMA</code>. Nama schema harus unik dalam database saat
+          ini.
+        </li>
+        <li>
+          Kedua, secara opsional gunakan <code>IF NOT EXISTS</code> untuk
+          membuat schema baru secara kondisional hanya jika schema tersebut
+          tidak ada. Mencoba membuat schema baru yang sudah ada tanpa
+          menggunakan opsi <code>IF NOT EXISTS</code> akan menghasilkan error.
+        </li>
+      </ul>
+      <p>Kita juga dapat membuat schema untuk pengguna:</p>
+      <pre><code>CREATE SCHEMA [IF NOT EXISTS] 
 AUTHORIZATION username;
 </code></pre>
-<p>Dalam hal ini, schema akan memiliki nama yang sama dengan nama <strong>username</strong></p>
-<p>PostgreSQL memungkinkan kita membuat schema dan list of objects seperti table dan views menggunakan satu pernyataan sebagai berikut:</p>
-<pre><code>CREATE SCHEMA schema_name
+      <p>
+        Dalam hal ini, schema akan memiliki nama yang sama dengan nama
+        <strong>username</strong>
+      </p>
+      <p>
+        PostgreSQL memungkinkan kita membuat schema dan list of objects seperti
+        table dan views menggunakan satu pernyataan sebagai berikut:
+      </p>
+      <pre><code>CREATE SCHEMA schema_name
     CREATE TABLE table_name1 (...)
     CREATE TABLE table_name2 (...)
     CREATE VIEW view_name1
         SELECT select_list FROM table_name1;
 </code></pre>
-<h2 id="alter-schema">Alter Schema</h2>
-<p>Pernyataan <code>ALTER SCHEMA</code> memungkinkan untuk mengubah definisi schema. Misalnya, Kita dapat mengganti nama schema sebagai berikut:</p>
-<pre><code>ALTER SCHEMA schema_name RENAME TO new_name;
+      <h2 id="alter-schema">Alter Schema</h2>
+      <p>
+        Pernyataan <code>ALTER SCHEMA</code> memungkinkan untuk mengubah
+        definisi schema. Misalnya, Kita dapat mengganti nama schema sebagai
+        berikut:
+      </p>
+      <pre><code>ALTER SCHEMA schema_name RENAME TO new_name;
 </code></pre>
-<p>Selain mengganti nama schema, <code>ALTER SCHEMA</code> juga memungkinkan untuk mengubah pemilik schema ke yang baru seperti berikut:</p>
-<pre><code>ALTER SCHEMA schema_name 
+      <p>
+        Selain mengganti nama schema, <code>ALTER SCHEMA</code> juga
+        memungkinkan untuk mengubah pemilik schema ke yang baru seperti berikut:
+      </p>
+      <pre><code>ALTER SCHEMA schema_name 
 OWNER TO { new_owner | CURRENT_USER | SESSION_USER};
 </code></pre>
-<h2 id="drop-schema">Drop Schema</h2>
-<p><code>DROP SCHEMA</code> menghapus schema dan semua objectnya dari database. Berikut sintaks nya:</p>
-<pre><code>DROP SCHEMA [IF EXISTS] schema_name 
+      <h2 id="drop-schema">Drop Schema</h2>
+      <p>
+        <code>DROP SCHEMA</code> menghapus schema dan semua objectnya dari
+        database. Berikut sintaks nya:
+      </p>
+      <pre><code>DROP SCHEMA [IF EXISTS] schema_name 
 [ CASCADE | RESTRICT ];
 </code></pre>
-<p>Dalam sintaks ini:</p>
-<ul>
-<li>Pertama, tentukan nama schema yang ingin dihapus setelah kata kunci <code>DROP SCHEMA.</code></li>
-<li>Kedua, gunakan opsi <code>IF EXISTS</code> untuk menghapus schema secara kondisional hanya jika schema itu ada.</li>
-<li>Ketiga, gunakan <code>CASCADE</code> untuk menghapus schema dan semua objek yang bergantung pada objek tersebut. Jika ingin menghapus schema hanya ketika schema itu kosong, kita dapat menggunakan opsi <code>RESTRICT</code>. Secara <strong>default</strong>, <code>DROP SCHEMA</code> menggunakan opsi <code>RESTRICT</code>.</li>
-</ul>
-<p>PostgreSQL memungkinkan untuk menghapus beberapa schema secara bersamaan dengan menggunakan satu pernyataan :</p>
-<pre><code>DROP SCHEMA [IF EXISTS] schema_name1 [,schema_name2,...] 
+      <p>Dalam sintaks ini:</p>
+      <ul>
+        <li>
+          Pertama, tentukan nama schema yang ingin dihapus setelah kata kunci
+          <code>DROP SCHEMA.</code>
+        </li>
+        <li>
+          Kedua, gunakan opsi <code>IF EXISTS</code> untuk menghapus schema
+          secara kondisional hanya jika schema itu ada.
+        </li>
+        <li>
+          Ketiga, gunakan <code>CASCADE</code> untuk menghapus schema dan semua
+          objek yang bergantung pada objek tersebut. Jika ingin menghapus schema
+          hanya ketika schema itu kosong, kita dapat menggunakan opsi
+          <code>RESTRICT</code>. Secara <strong>default</strong>,
+          <code>DROP SCHEMA</code> menggunakan opsi <code>RESTRICT</code>.
+        </li>
+      </ul>
+      <p>
+        PostgreSQL memungkinkan untuk menghapus beberapa schema secara bersamaan
+        dengan menggunakan satu pernyataan :
+      </p>
+      <pre><code>DROP SCHEMA [IF EXISTS] schema_name1 [,schema_name2,...] 
 [CASCADE | RESTRICT];
 </code></pre>
-<h1 id="managing-tablespace">Managing Tablespace</h1>
-<p>Tablespace adalah <strong>lokasi disk tempat PostgreSQL menyimpan file data yang berisi objek database seperti indeks dan tabel.</strong></p>
-<p>PostgreSQL memiliki dua tablespace default:</p>
-<ul>
-<li><code>pg_default</code> tablespace menyimpan data pengguna.</li>
-<li><code>pg_global</code> tablespace menyimpan data global.</li>
-</ul>
-<h2 id="create-tablespace">Create Tablespace</h2>
-<p>Untuk membuat tablespace baru, gunakan pernyataan <code>CREATE TABLESPACE</code>, seperti berikut:</p>
-<pre><code>CREATE TABLESPACE tablespace_name
+      <h1 id="managing-tablespace">Managing Tablespace</h1>
+      <p>
+        Tablespace adalah
+        <strong
+          >lokasi disk tempat PostgreSQL menyimpan file data yang berisi objek
+          database seperti indeks dan tabel.</strong
+        >
+      </p>
+      <p>PostgreSQL memiliki dua tablespace default:</p>
+      <ul>
+        <li><code>pg_default</code> tablespace menyimpan data pengguna.</li>
+        <li><code>pg_global</code> tablespace menyimpan data global.</li>
+      </ul>
+      <h2 id="create-tablespace">Create Tablespace</h2>
+      <p>
+        Untuk membuat tablespace baru, gunakan pernyataan
+        <code>CREATE TABLESPACE</code>, seperti berikut:
+      </p>
+      <pre><code>CREATE TABLESPACE tablespace_name
 OWNER user_name
 LOCATION directory_path;
 </code></pre>
-<p>Setelah membuat Tablespace baru, Kita dapat menentukannya dalam pernyataan <code>CREATE DATABASE</code>, <code>CREATE TABLE</code> dan <code>CREATE INDEX</code> untuk menyimpan file data object di tablespace.</p>
-<h2 id="alter-tablespace">Alter Tablespace</h2>
-<p>Setelah membuat tablespace, Kita dapat mengubah definisinya dengan menggunakan pernyataan <code>ALTER TABLESPACE</code> sebagai berikut:</p>
-<pre><code>ALTER TABLESPACE tablespace_name
+      <p>
+        Setelah membuat Tablespace baru, Kita dapat menentukannya dalam
+        pernyataan <code>CREATE DATABASE</code>, <code>CREATE TABLE</code> dan
+        <code>CREATE INDEX</code> untuk menyimpan file data object di
+        tablespace.
+      </p>
+      <h2 id="alter-tablespace">Alter Tablespace</h2>
+      <p>
+        Setelah membuat tablespace, Kita dapat mengubah definisinya dengan
+        menggunakan pernyataan <code>ALTER TABLESPACE</code> sebagai berikut:
+      </p>
+      <pre><code>ALTER TABLESPACE tablespace_name
 action;
 </code></pre>
-<p>action nya dapat berupa:</p>
-<h3 id="ganti-nama">Ganti nama</h3>
-<pre><code>ALTER TABLESPACE tablespace_name 
+      <p>action nya dapat berupa:</p>
+      <h3 id="ganti-nama">Ganti nama</h3>
+      <pre><code>ALTER TABLESPACE tablespace_name 
 RENAME TO new_name;
 </code></pre>
-<h3 id="ganti-pemilik">Ganti pemilik</h3>
-<pre><code>ALTER  TABLESPACE tablespace_name 
+      <h3 id="ganti-pemilik">Ganti pemilik</h3>
+      <pre><code>ALTER  TABLESPACE tablespace_name 
 OWNER TO new_owner;
 </code></pre>
-<h3 id="menetapkan-parameter">Menetapkan parameter</h3>
-<pre><code>ALTER  TABLESPACE tablespace_name 
+      <h3 id="menetapkan-parameter">Menetapkan parameter</h3>
+      <pre><code>ALTER  TABLESPACE tablespace_name 
 SET parameter_name = value;
 </code></pre>
-<h2 id="drop-tablespace">Drop Tablespace</h2>
-<p>Pernyataan <code>DROP TABLESPACE</code> menghapus tablespace dari database:</p>
-<pre><code>DROP  TABLESPACE [IF  EXISTS] tablespace_name;
+      <h2 id="drop-tablespace">Drop Tablespace</h2>
+      <p>
+        Pernyataan <code>DROP TABLESPACE</code> menghapus tablespace dari
+        database:
+      </p>
+      <pre><code>DROP  TABLESPACE [IF  EXISTS] tablespace_name;
 </code></pre>
-<p>Dalam sintaks ini:</p>
-<ul>
-<li>Pertama, tentukan nama tablespace yang ingin dihapus setelah kata kunci <code>DROP TABLESPACE</code>.</li>
-<li>Kedua, gunakan opsi <code>IF EXISTS</code> untuk menginstruksikan PostgreSQL agar mengeluarkan pemberitahuan alih-alih error ketika tablespace tidak ada.</li>
-</ul>
-<p>Hanya pemilik tablespace atau pengguna super yang dapat menjalankan pernyataan <code>DROP TABLESPACE</code> untuk menghapus tablespace.</p>
-</div>
-</body>
-
+      <p>Dalam sintaks ini:</p>
+      <ul>
+        <li>
+          Pertama, tentukan nama tablespace yang ingin dihapus setelah kata
+          kunci <code>DROP TABLESPACE</code>.
+        </li>
+        <li>
+          Kedua, gunakan opsi <code>IF EXISTS</code> untuk menginstruksikan
+          PostgreSQL agar mengeluarkan pemberitahuan alih-alih error ketika
+          tablespace tidak ada.
+        </li>
+      </ul>
+      <p>
+        Hanya pemilik tablespace atau pengguna super yang dapat menjalankan
+        pernyataan <code>DROP TABLESPACE</code> untuk menghapus tablespace.
+      </p>
+    </div>
+  </body>
 </html>
