@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿# PostgreSQL Administration Cheatsheet
+=======
+# PostgreSQL Administration Cheatsheet
+>>>>>>> c20d4cbdfc20188e0a292599ee3d0d7f7eb9072a
 ## Install PostgreSQL
 
 1. Download installer di [sini](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
